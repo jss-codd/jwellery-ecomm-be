@@ -1,0 +1,23 @@
+---
+description: Backend Node.js architecture and folder structure standards
+globs: "jewellery-backend/src/**/*.ts"
+alwaysApply: false
+---
+
+# Backend Architecture (Node + TypeScript)
+
+- Use layered module structure inside `src/modules/<domain>`:
+  - `controller` for HTTP layer only
+  - `service` for business logic
+  - `repository` for data access
+  - `validation` for request payload schemas
+- Keep API composition in `src/routes/index.ts` and module route files.
+- Keep app bootstrap concerns in `src/app.ts`, startup in `src/server.ts`.
+- Put cross-cutting middleware only in `src/middleware`.
+- Put shared helpers/errors in `src/utils`.
+
+# Boundaries
+
+- Controllers should not directly access repositories.
+- Services should not depend on Express request/response objects.
+- Validation must happen before service logic for create/update endpoints.

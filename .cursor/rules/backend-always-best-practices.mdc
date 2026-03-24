@@ -1,0 +1,28 @@
+---
+description: Always apply Node backend best practices
+alwaysApply: true
+---
+
+# Node Backend Best Practices
+
+- Use TypeScript strict mode and avoid `any`.
+- Handle errors centrally via middleware; avoid repeating try/catch in each route.
+- Validate request payloads with schema validators.
+- Keep environment config in one place and read values through config modules.
+- Return consistent JSON response shape for success/error paths.
+- Add loading-safe and deployment-safe defaults in `.env.example`.
+- Keep logs structured and include request context when possible.
+
+# Logging Requirements (Always)
+
+- Use structured JSON logging for backend services.
+- Include and propagate `x-request-id` for every request and error response.
+- Ensure every request log includes method, path, status, and latency.
+- Store application logs with rotation and keep retention to 7 days (1 week).
+- Keep console pretty logs only for local development; production logs must be machine-readable.
+
+# Deployment Safety
+
+- Do not commit `.env` or generated output directories.
+- Ensure lint and typecheck pass before release.
+- Keep runtime scripts simple: `dev`, `build`, `start`.
